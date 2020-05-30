@@ -14,7 +14,7 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|nickname|string| null: false|
+|nickname|string| null: false|index:true|
 |phonenumber|string| unique: true|
 |old|integer| null: false|numericality: true| <!-- active hash使用-->
 |job|integer| null: false|<!-- active hash使用-->
@@ -28,6 +28,7 @@
 ### Association
 - has_many :groups, through:members, dependent: :destroy
 - has_many :practices, dependent: :destroy
+- has_many :members
 - has_many :messages, dependent: :destroy
 - has_many :joinings, dependent: :destroy
 
@@ -41,6 +42,7 @@
 
 ### Association
 - has_many :users, through:members, dependent: :destroy
+- has_many :members
 - has_many :messages, through:members, dependent: :destroy
 
 ## membersテーブル
@@ -74,19 +76,20 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|name|string| null: false|
-|date|date|
+|name|string| null: false|index:true|
+|date|date| null: false|index:true|
 |day|integer|
 |place|string|
 |detail|text|
-|manager|references| foreign_key: true|
 |member_limit|integer|
 |start_time|time|
 |end_time|time|
-|group_id|references|foreign_key: true|
+|user_id|references| foreign_key: true|<!-- 練習の代表 -->
+|group_id|references|foreign_key: true|<!-- 所属グループ -->
 
 ### Association
 - has_many   :joinings, dependent: :destroy
+- belongs_to :user
 - belongs_to :group
 
 ##  joiningsテーブル
