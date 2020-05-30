@@ -16,86 +16,87 @@
 |------|----|-------|
 |nickname|string| null: false|
 |phonenumber|string| unique: true|
-|old|integer| null: false|
-|job|integer| null: false|
-|email|string|null: false, default: ""|
+|old|integer| null: false|numericality: true| <!-- active hash使用-->
+|job|integer| null: false|<!-- active hash使用-->
+|email|string|null: false|
+|experience|integer|numericality: true|
+|practice_times|integer| null:false|<!-- active hash使用-->
+|detail|text|
+|club|string|
+|avatar|string|
+
+### Association
+- has_many :groups, through:members, dependent: :destroy
+- has_many :practices, dependent: :destroy
+- has_many :messages, dependent: :destroy
+- has_many :joinings, dependent: :destroy
+
+## groupsテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false|
 |detail|text|
 |avatar|string|
 
 ### Association
-- has_many :items, dependent: :destroy
-- has_one :card dependent: :destroy
-- has_one :address dependent: :destroy
+- has_many :users, through:members, dependent: :destroy
+- has_many :messages, through:members, dependent: :destroy
 
-## addressesテーブル
+## membersテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-|user|reference|null: false, foreign_key: true|
-|postal_code|string|null: false|
-|prefecture_code|integer|null: false|
-|city|string| null: false|
-|block|string| null: false|
-|building|string|
+|user_id|references|foreign_key: true|
+|group_id|references|foreign_key: true|
 
 ### Association
 - belongs_to :user
+- belongs_to :group
 
 
-## cardsテーブル
+## messegesテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-|user|references|null: false, foreign_key: true|
-|card_id|string|null: false|
-|customer_id|string|null: false|
+|text|text|null: false|
+|image|text|
+|user_id|references|foreign_key: true|
+|group_id|references|foreign_key: true|
 
+ 
 ### Association
 - belongs_to :user
+- belongs_to :group
 
 
-## brandsテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false|
-
-### Association
-- has_many :items
-
-
-## categoriesテーブル
+## practicesテーブル
 
 |Column|Type|Options|
 |------|----|-------|
 |name|string| null: false|
-|ancestry|string| index: false|
+|date|date|
+|day|integer|
+|place|string|
+|detail|text|
+|manager|references| foreign_key: true|
+|member_limit|integer|
+|start_time|time|
+|end_time|time|
+|group_id|references|foreign_key: true|
 
 ### Association
-- has_many :items
+- has_many   :joinings, dependent: :destroy
+- belongs_to :group
 
-
-## itemsテーブル
+##  joiningsテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false|
-|detail|text|null: false|
-|price|integer|null: false|
-|brand|references| foreign_key: true|
-|status_id|integer| null: false|
-|charge_id|integer| null: false|
-|prefecture_id|integer| null: false|
-|day_id|integer| null: false|
-|category|references| null: false, foreign_key: true|
-|seller|references| null: false, foreign_key: {to_table: :users}|
-|buyer|references| foreign_key: { to_table: :users}|
+|status|integer|<!-- active hash使用-->
+|practice_id|refernces| foreign_key: true|
+|user_id|refernces| foreign_key: true|
 
 ### Association
-- has_many :images dependent: :destroy
 - belongs_to :user
-- belongs_to :category
-- belongs_to :brand
-- belongs_to :status
-- belongs_to :seller, class_name: "User"
-- belongs_to :buyer, class_name: "User"
+- belongs_to :practice
