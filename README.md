@@ -16,11 +16,11 @@
 |------|----|-------|
 |nickname|string| null: false|
 |phonenumber|string| unique: true|
-|old|integer| null: false|numericality: true| <!-- active hash使用-->
+|old|integer| null: false|numericality: true|
 |job|integer| null: false|<!-- active hash使用-->
 |email|string|null: false|
 |experience|integer|numericality: true|
-|practice_times|integer| null:false|<!-- active hash使用-->
+|practice_time|integer| null:false|<!-- active hash使用-->
 |detail|text|
 |club|string|
 |avatar|string|
