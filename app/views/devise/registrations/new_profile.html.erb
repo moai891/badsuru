@@ -1,0 +1,51 @@
+<h2>住所情報登録</h2>
+
+<%= form_for @profile do |f| %>
+  <%= render "devise/shared/error_messages", resource: @profile %>
+
+  <div class="field">
+    <%= f.label :phonenumber %><br />
+    <%= f.text_field :phonenumber %>
+  </div>
+
+  <div class="field">
+    <%= f.label :old %><br />
+    <%= f.text_field :old %>
+  </div>
+
+  <div class="field">
+    <%= f.label :job %><br />
+    <%= f.text_field :job %>
+  </div>
+
+  <div class="field">
+    <%= f.label :experience %><br />
+    <%= f.text_field :experience %>
+  </div>
+
+  <div class="field">
+    <%= f.label :practice_time %><br />
+    <%= f.text_field :practice_time %>
+  </div>
+
+  <div class="field">
+    <%= f.label :detail %><br />
+    <%= f.text_field :detail %>
+  </div>
+
+  <div class="field">
+    <%= f.label :club %><br />
+    <%= f.text_field :club %>
+  </div>
+
+  <div class="field">
+    <%= f.label :avatar %><br />
+    <%= f.text_field :avatar %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
