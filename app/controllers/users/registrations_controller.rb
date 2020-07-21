@@ -31,6 +31,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
     @user.build_profile(@profile.attributes)
     @user.save
+    insert_avatar
     session["devise.regist_data"]["user"].clear
     sign_in(:user, @user)
   end
@@ -64,6 +65,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     params.require(:profile).permit(:phonenumber, :old, :job, :experience, :practice_time, :detail, :club, :avatar)
   end
   
+  def insert_avatar
+    @profile_avatar = Profile.find_by( id: @user.id )
+    @profile_avatar.update!(avatar: profile_params[:avatar])
+  end
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
   #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
