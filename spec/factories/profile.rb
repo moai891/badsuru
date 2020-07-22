@@ -8,7 +8,7 @@ FactoryBot.define do
     practice_time         {"2"}
     detail                {"よろしくお願いします"}
     club                  {"abcクラブ"}
-    avatar                {"aaa"}
+    avatar                { Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/グループ一覧の表示.png')) }
     user_id               {"2"}
   end
 
