@@ -1,0 +1,29 @@
+.relative-nav{
+  position: relative;
+  height: 49px;
+  width: 100%;
+}
+
+.nav-main{
+  // font-family: $font;
+
+  &__list{
+    position: absolute;
+    top: 0;
+    left: 0;
+    align-items: center;
+    border: solid 1px black;
+    list-style: none;
+    height: 49px;
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+
+    @for $value from 1 through 5 {
+      &__item#{$value} {
+        margin-left: 40px;
+      }
+    }
+  } 
+}

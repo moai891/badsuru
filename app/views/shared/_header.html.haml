@@ -1,0 +1,38 @@
+%header.header
+  .header-content
+    .header-content__logo
+      = link_to image_tag('/images/icon.png', class:"header-content__logo__img"), root_path
+
+    - if user_signed_in?
+      %li.header-content__linkItem
+        %ul.header-content__linkItem__login
+          = link_to "ログアウト", destroy_user_session_path, method: :delete
+        %ul.header-content__linkItem__reg
+          = link_to "プロフィール", edit_user_registration_path
+    - else
+      %li.header-content__linkItem
+        %ul.header-content__linkItem__login
+          = link_to "ログイン", new_user_session_path
+        %ul.header-content__linkItem__reg
+          = link_to "新規登録", new_user_registration_path
+
+  -# %nav.global-nav
+  -#   %ul.global-nav__list
+  -#     %li.global-nav__item
+  -#       メニュー1
+  -#     %li.global-nav__item
+  -#       メニュー2
+  -#     %li.global-nav__item
+  -#       メニュー3
+  -#     %li.global-nav__item
+  -#       メニュー4
+  -#     %li.global-nav__item
+  -#       メニュー5
+
+  .hamburger#js-hamburger
+    %span.hamburger__line.hamburger__line--1
+    %span.hamburger__line.hamburger__line--2
+    %span.hamburger__line.hamburger__line--3
+  
+  .black-bg#js-black-bg
+

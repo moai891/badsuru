@@ -71,3 +71,4 @@ gem 'active_hash'
 gem 'carrierwave', '~> 2.0'
 gem 'mini_magick'
 gem 'fog-aws'
+gem "haml-rails", "~> 2.0"
