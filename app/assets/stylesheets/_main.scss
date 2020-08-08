@@ -1,0 +1,30 @@
+.main-visual{
+  height: 522px;
+  position: relative;
+
+  &__images{
+    height: 522px;
+    max-width: 900px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+  &__img{
+
+    &--bg{
+      position: absolute;
+      z-index: 1;
+    }
+
+    &--main{
+      height: 450px;
+      max-width: 900px;
+      position: absolute;
+      z-index: 2;
+    }
+  }
+
+
+}
