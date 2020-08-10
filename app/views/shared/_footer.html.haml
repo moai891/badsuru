@@ -1,0 +1,16 @@
+.main-footer
+  .main-footer__icon-img
+    = image_tag '/images/footer-icon.png', alt: 'フッターアイコン',class: 'footer-icon__img'
+  
+  .main-footer__anouncement
+    = link_to 'よくある質問', root_path, class: "main-footer__anouncement__link--first"
+    = link_to '運営会社について', root_path, class: "main-footer__anouncement__link"
+    = link_to 'お問い合わせ', root_path, class: "main-footer__anouncement__link"
+
+  .main-footer__policy
+    = link_to 'プライバシーポリシー', root_path, class: "main-footer__policy__link--first"
+    = link_to '利用規約', root_path, class: "main-footer__policy__link"
+    = link_to 'このサイトは個人のポートフォリオサイトです', root_path, class: "main-footer__policy__link"
+    
+  .main-footer__copyright
+    %p Badsuru 
