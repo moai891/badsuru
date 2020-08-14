@@ -1,3 +1,5 @@
+@import "mixin";
+
 #profile_job, #profile_practice_time{
   @include selectbox();
 }
