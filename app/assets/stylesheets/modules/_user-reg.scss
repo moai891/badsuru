@@ -1,0 +1,90 @@
+.user-reg-main{
+  width: 100%;
+    
+    &__form{
+      width: 700px;
+      margin: 0 auto;
+      background-color: #fff;
+    }
+}
+
+.user-reg-wrapper{
+  padding-bottom: 50px;
+  background-color: #F9F9F9;
+}
+
+.user-reg{
+  height: 120px;
+  width: 100%;
+  background: #FFFC0E;
+  // margin-bottom: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+
+  &__title{
+    font-size: 30px;
+  }
+}
+
+.field{
+  @include fields();
+
+  &--1{
+    @include fields();
+  }
+
+}
+
+.text-space{
+  @include textbox();
+
+  &--detail{
+    @include textbox();
+    height: 120px;
+  }
+}
+
+.label-reg-profile{
+  font-size: 16px;
+  font-weight: 200;
+
+  &--1{
+    display: inline-block;
+    padding-top: 50px;
+  }
+}
+
+.actions-reg{
+  @include fields();
+  text-align: center;
+
+  &__btn{
+    height: 66px;
+    width: 100%;
+    margin: 10px 0 50px 0;
+    font-weight: 400;
+    border: solid 1px #EBEBEB;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+}
+
+.form-require {
+  padding: 2px 4px;
+  width: 40px;
+  border-radius: 2px;
+  color: red;
+  font-size: 12px;
+}
+
+.error{
+  margin-top: 10px;
+  list-style: none;
+
+  &__message{
+    color: red;
+  }
+
+}

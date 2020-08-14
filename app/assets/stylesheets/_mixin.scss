@@ -1,0 +1,26 @@
+@mixin fields() {
+  width: 520px;
+  font-size: 16px;
+  margin: 0 auto;
+  margin-top: 40px;
+  font-weight: 200;
+}
+
+@mixin textbox() {
+  height: 66px;
+  width: 100%;
+  font-size: 16px;
+  margin-top: 10px;
+  font-weight: 400;
+  border: solid 1px #EBEBEB;
+  border-radius: 4px;
+}
+
+@mixin selectbox() {
+  height: 66px;
+  width: 50%;
+  margin-top: 10px;
+  font-weight: 400;
+  border: solid 1px #EBEBEB;
+  border-radius: 4px;
+}

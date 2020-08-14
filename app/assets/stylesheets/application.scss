@@ -2,8 +2,12 @@
 @import "global";
 @import "font-awesome-sprockets";
 @import "font-awesome";
+@import "mixin";
+@import "modules/user-reg";
 @import "variable";
 @import "header";
 @import "nav";
+@import "flash";
 @import "main";
 @import "footer"; 
+@import "new_profile";

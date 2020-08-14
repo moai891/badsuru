@@ -1,38 +1,54 @@
-%h2 住所情報登録
-= form_for @profile do |f|
-  = render "devise/shared/error_messages", resource: @profile
-  .field
-    = f.label :phonenumber
-    %br/
-    = f.text_field :phonenumber
-  .field
-    = f.label :old
-    %br/
-    = f.text_field :old
-  .field
-    = f.label :job
-    %br/
-    = f.text_field :job
-  .field
-    = f.label :experience
-    %br/
-    = f.text_field :experience
-  .field
-    = f.label :practice_time
-    %br/
-    = f.text_field :practice_time
-  .field
-    = f.label :detail
-    %br/
-    = f.text_field :detail
-  .field
-    = f.label :club
-    %br/
-    = f.text_field :club
-  .field
-    = f.label :avatar
-    %br/
-    = f.file_field :avatar , class: "avatar"
-  .actions
-    = f.submit "Sign up"
-= render "devise/shared/links"
+= render "shared/header"
+= render "shared/nav"
+
+.user-reg-wrapper
+  .user-reg
+    %h2.user-reg__title プロフィールの登録
+
+  .user-reg-main
+    .user-reg-main__form
+      = form_for @profile, builder: WithErrorFormBuilder do |f|
+        -# = render "devise/shared/error_messages", resource: @profile
+        .field--1
+          = f.label "電話番号(半角入力)", class: 'label-reg-profile--1'
+          %span.form-require 必須
+          %br/
+          = f.text_field :phonenumber, autofocus: true, autocomplete: "phonenumber", placeholder: "半角入力", class: "text-space"
+        .field
+          = f.label "年齢(半角入力)", class: 'label-reg-profile'
+          %span.form-require 必須
+          %br/
+          = f.text_field :old, autofocus: true, autocomplete: "old", placeholder: "半角入力", class: "text-space"
+        .field
+          = f.label "職業", class: 'label-reg-profile'
+          %span.form-require 必須
+          %br/
+          = f.collection_select :job ,Job.all, :id, :name, prompt: "--"
+        .field
+          = f.label "経験年数", class: 'label-reg-profile'
+          %span.form-require 必須
+          %br/
+          .form-experience
+            = f.text_field :experience, autofocus: true, autocomplete: "experience", placeholder: "半角入力", class: "text-space"
+            %span.form-experience__year 年
+        .field
+          = f.label "練習頻度", class: 'label-reg-profile'
+          %span.form-require 必須
+          %br/
+          = f.collection_select :practice_time ,PracticeTime.all, :id, :name, prompt: "--", class: "selectbox-space"
+        .field
+          = f.label "詳細", class: 'label-reg-profile'
+          %br/
+          = f.text_area :detail, autofocus: true, autocomplete: "detail", placeholder: "入力してください", class: "text-space--detail"
+        .field
+          = f.label "クラブ名", class: 'label-reg-profile'
+          %br/
+          = f.text_field :club, autofocus: true, autocomplete: "club", placeholder: "入力してください", class: "text-space"
+        .field
+          = f.label "プロフィール画像", class: 'label-reg-profile'
+          %br/
+          = f.file_field :avatar , class: "image-input-space"
+        .actions-reg
+          = f.submit "登録する", class: 'actions-reg__btn'
+-# = render "devise/shared/links"
+= render "shared/footer"
