@@ -1,25 +1,36 @@
-%h2 ユーザー情報登録
-= form_for(@user, url: user_registration_path) do |f|
-  = render "devise/shared/error_messages", resource: @user
-  .field
-    = f.label :nickname
-    %br/
-    = f.text_field :nickname
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    - if @minimum_password_length
-      %em
-        (#{@minimum_password_length} characters minimum)
-    %br/
-    = f.password_field :password, autocomplete: "new-password"
-  .field
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .actions
-    = f.submit "Next"
-= render "devise/shared/links"
+= render "shared/header"
+= render "shared/nav"
+
+.user-reg-wrapper
+  .user-reg
+    .user-reg
+      %h2.user-reg__title ユーザー新規登録
+
+  = form_for @user, url: user_registration_path, builder: WithErrorFormBuilder do |f|
+    -# = render "devise/shared/error_messages", resource: @user
+    .user-reg-main__form
+      .field--1
+        = f.label :ニックネーム, class: 'label-reg-profile--1'
+        %span.form-require 必須
+        %br/
+        = f.text_field :nickname, autofocus: true, autocomplete: "nickname", placeholder: "例:バドスル太郎", class: "text-space"
+      .field
+        = f.label :メールアドレス, class: 'label-reg-profile'
+        %span.form-require 必須
+        %br/
+        = f.email_field :email, autofocus: true, autocomplete: "email", class: "text-space"
+      .field
+        = f.label :パスワード, class: 'label-reg-profile'
+        - if @minimum_password_length
+          %em
+            (#{@minimum_password_length} characters minimum)
+        %br/
+        = f.password_field :password, autocomplete: "new-password", class: "text-space"
+      .field
+        = f.label :パスワード確認, class: 'label-reg-profile'
+        %br/
+        = f.password_field :password_confirmation, autocomplete: "new-password", class: "text-space"
+      .actions-reg
+        = f.submit "次へ進む", class: 'actions-reg__btn'
+    -# = render "devise/shared/links"
+= render "shared/footer"

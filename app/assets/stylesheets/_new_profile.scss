@@ -1,0 +1,12 @@
+#profile_job, #profile_practice_time{
+  @include selectbox();
+}
+
+.form-experience{
+  position: relative;
+
+  &__year{
+    position: absolute;
+    right: -30px;
+    top: 60px;  }
+}

@@ -1,21 +1,28 @@
 = render "shared/header"
 = render "shared/nav"
 
-%h2 Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
+.user-reg-wrapper
+  .user-reg
+    %h2.user-reg__title ログイン
+
+  .user-reg-main
+    .user-reg-main__form
+  = form_for(resource, as: resource_name, url: session_path(resource_name),builder: WithErrorFormBuilder)  do |f|
+    .field--1
+      = f.label :email, class: 'label-reg-profile--1'
+      %br/
+      = f.email_field :email, autofocus: true, autocomplete: "email", class: "text-space"
+      = render "layouts/notification"
     .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
+      = f.label :password
+      %br/
+      = f.password_field :password, autocomplete: "current-password", class: "text-space"
+      = render "layouts/notification"
+    - if devise_mapping.rememberable?
+      .field
+        = f.check_box :remember_me
+        = f.label :パスワードを記憶する
+    .actions-reg
+      = f.submit "ログインする", class: 'actions-reg__btn'
+      
 = render "shared/footer"

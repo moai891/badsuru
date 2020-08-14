@@ -1,6 +1,23 @@
 ---
 ja:
   activerecord:
+    models:
+      user: ユーザー
+      profile: プロフィール
+    attributes:
+      user:
+        nickname: ニックネーム
+        email: メールアドレス
+        password: パスワード
+      profile:
+        phonenumber: 電話番号
+        old: 年齢
+        job: 職業
+        experience: 経験年数
+        practice_time: 練習頻度
+        detail: 詳細
+        club: クラブ名
+        avatar: プロフィール画像
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
