@@ -1,4 +1,4 @@
-const images = ["/public/images/visual-1.jpg", "/public/images/visual-2.jpg", "/public/images/visual-3.jpg"]
+const images = ["images/visual-1.jpg", "images/visual-2.jpg", "images/visual-3.jpg"]
 
 let num = -1
 
@@ -14,4 +14,4 @@ function slideShow_timer(){
   
 }
 
-setInterval(slideShow_timer, 1000);
+setInterval(slideShow_timer, 5000);
