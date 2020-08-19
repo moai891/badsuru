@@ -1,0 +1,15 @@
+= render "shared/header"
+= render "shared/nav"
+
+.user-reg-wrapper
+  .user-reg
+    .user-reg
+      %h2.user-reg__title ユーザー新規登録
+  .user-reg__create
+    %p.user-reg__create__complete ありがとうございます
+    %br/
+    %p.user-reg__create__complete 会員登録が完了しました
+    .actions-reg
+      = link_to "Badsuruをはじめる", root_path, class:'actions-reg__btn'
+  
+= render "shared/footer"
