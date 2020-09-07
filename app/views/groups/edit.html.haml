@@ -1,0 +1,8 @@
+= render "shared/header"
+= render "shared/nav"
+.group-reg-wrapper
+  .group-reg
+    %h2.group-reg__title グループ編集
+  = render "layouts/notification"
+  = render partial: "shared/group_form", locals:{ group:@group}
+= render "shared/footer"

@@ -1,10 +1,48 @@
+= render "layouts/notification"
+
 .main-visual
   = image_tag '/images/visual-bg.jpg', alt: '画像背景', height: '522px', width: '100%', class: 'main-visual__img--bg'
   .main-visual__images
     = image_tag '/images/visual-1.jpg', id: "main-visual__images-js", alt: '画像背景', class: 'main-visual__img--main'
 
 .main-body
-  %h1.main-body-title 参加予定の練習
+  .main-body__items
+    = icon('fab', 'bitbucket', class: 'main-body__items__icon')
+    %h1.main-body__title マイグループ
+    = link_to "作成する" , new_group_path, class: "main-body__items__link"
+  .my-group
+    - if user_signed_in? 
+      .my-group__items
+        - @my_groups.each do |group|
+          .my-group__item
+            .my-group__item__img
+              = image_tag group.group_avatar.url, id: "my-group-img", alt: 'グループ画像', class: 'my-group-img'
+            %h1.my-group__item__title 
+            = group.name
+            %ul.my-group__item__infolist
+              %li= "人数:#{group.users.count}"
+              %li= "詳細:#{group.detail}"
+              %li 活動拠点(詳細)
+              %li= link_to "編集する", edit_group_path(group)
+    - else
+      %p.my-group__items--notuser-text ログイン (新規登録)してグループに参加しよう！！
+      .my-group__items--notuser
+        - @groups.each do |group|
+          .my-group__item
+            .my-group__item__img
+              = image_tag group.group_avatar.url, id: "my-group-img", alt: 'グループ画像', class: 'my-group-img'
+            %h1.my-group__item__title 
+            = group.name
+            %ul.my-group__item__infolist
+              %li= "人数:#{group.users.count}"
+              %li= "詳細:#{group.detail}"
+              %li 活動拠点(詳細)
+
+
+  .main-body__items
+    = icon('fab', 'bitbucket', class: 'main-body__items__icon')
+    %h1.main-body__title 参加予定の練習
+    = link_to "作成する" , '', class: "main-body__items__link"
 
   .latest-practice__items
     %article.latest-practice
@@ -32,8 +70,11 @@
         %ul.latest-practice__item__infolist
           %li 開催日：2020年8月8日
           %li 場所：総合体育館
-  
-  %h1.main-body-title 募集中の練習
+
+  .main-body__items
+    = icon('fab', 'bitbucket', class: 'main-body__items__icon')
+    %h1.main-body__title 募集中の練習
+    = link_to "作成する" , '', class: "main-body__items__link"
 
   .latest-practice__items
     %article.latest-practice

@@ -4,6 +4,7 @@ ja:
     models:
       user: ユーザー
       profile: プロフィール
+      group: グループ
     attributes:
       user:
         nickname: ニックネーム
@@ -18,6 +19,10 @@ ja:
         detail: 詳細
         club: クラブ名
         avatar: プロフィール画像
+      group:
+        name: 名前
+        detail: 詳細
+        group_avatar: 画像
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

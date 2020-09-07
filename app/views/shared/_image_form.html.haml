@@ -1,0 +1,9 @@
+.field__img
+  = f.label "グループ画像(任意)", class: 'label-reg-group'
+    - if @group.group_avatar.present?
+      .field__img--prev
+        = image_tag group.group_avatar.url, id: "my-group-img", alt: 'グループ画像', class: 'my-group-img'
+    - else
+      .field__img--reg
+        = icon('fas', 'image', class: 'photo-icon')
+        = f.file_field :group_avatar , class: "image-input-space"

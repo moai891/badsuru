@@ -1,3 +1,5 @@
+@import "mixin";
+
 .main-visual{
   height: 522px;
   position: relative;
@@ -29,8 +31,59 @@
 
 }
 
-.main-body-title{
+.main-body__items{
+  display: flex;
   margin-top: 40px;
+
+  &__icon{
+    margin-right: 8px;
+  }
+
+  &__link{
+    margin-left: 8px;
+  }
+
+}
+
+.my-group{
+  &__items{
+    @include group-items();
+
+  &--notuser{
+    @include group-items();
+    opacity: 0.3;
+  }
+
+    &--notuser-text{
+      font-size: 40px;
+      text-align: center;
+      position: relative;
+      align-items: center;
+      top: 96px;
+      z-index: 2;
+    }
+  }
+
+  &__item{
+    margin-right: 40px;      
+   &__img{
+      height: 150px;
+      width: 270px;
+    }
+
+    &__title{
+      margin-top: 14px;
+      font-size: 18px;
+    }
+
+    &__infolist{
+      font-size: 12px;
+      margin-top: 10px;
+      list-style: none;
+      display: flex;
+      flex-flow: column;
+    }  
+  }
 }
 
 .latest-practice__items{
@@ -45,7 +98,6 @@
     margin-right: 40px;
     
     &__img{
-
       height: 150px;
       width: 270px;
     }

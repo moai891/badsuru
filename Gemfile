@@ -42,6 +42,10 @@ group :development, :test do
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
+  gem 'faker'
+  gem 'rails-controller-testing'
+  gem 'forgery_ja'
+  gem 'pry-rails'
 end
 
 group :development do
@@ -53,7 +57,6 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'pry-rails'
 end
 
 group :test do
