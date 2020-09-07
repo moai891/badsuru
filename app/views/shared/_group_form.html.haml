@@ -1,0 +1,25 @@
+.user-reg-main
+  .user-reg-main__form  
+    = form_for @group, builder: WithErrorFormBuilder do |f|
+      .field-img
+        .field-img__box
+          = image_tag @group.group_avatar.url, size: "180x180", alt: "グループ画像", id: "my-group-img", alt: 'グループ画像', class: 'field-img__box__file'
+          = f.label :group_avatar, class: 'label-reg-group' do
+            = icon('fas', 'image', class: 'field-img__box__photo-icon')
+            = f.file_field :group_avatar , class: "image-input-space--hidden"
+      .field--1
+        = f.label "グループ名", class: 'label-reg-group--1'
+        %br/
+        = f.text_field :name, autofocus:true, autocomplete: "name", placeholder: "グループ名", class: "text-space"
+      .field
+        = f.label "詳細", class: 'label-reg-group'
+        %br/
+        = f.text_area :detail, autofocus:true, autocomplete: "detail", placeholder: "チームの紹介", class: "text-space"
+      .field
+        = f.label "メンバー選択", class: 'label-reg-group'
+        %br/
+        = f.collection_check_boxes :user_ids, User.all, :id, :nickname
+
+      .actions-reg
+        = f.submit "登録する", class: "actions-reg__btn"
+

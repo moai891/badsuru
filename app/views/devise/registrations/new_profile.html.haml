@@ -8,7 +8,6 @@
   .user-reg-main
     .user-reg-main__form
       = form_for @profile, builder: WithErrorFormBuilder do |f|
-        -# = render "devise/shared/error_messages", resource: @profile
         .field--1
           = f.label "電話番号(半角入力)", class: 'label-reg-profile--1'
           %span.form-require 必須

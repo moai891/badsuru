@@ -28,24 +28,6 @@
   }
 }
 
-.field{
-  @include fields();
-
-  &--1{
-    @include fields();
-  }
-
-}
-
-.text-space{
-  @include textbox();
-
-  &--detail{
-    @include textbox();
-    height: 120px;
-  }
-}
-
 .label-reg-profile{
   font-size: 16px;
   font-weight: 200;
@@ -54,40 +36,4 @@
     display: inline-block;
     padding-top: 50px;
   }
-}
-
-.actions-reg{
-  @include fields();
-  text-align: center;
-
-  &__btn{
-    display: inline-block;
-    height: 66px;
-    line-height: 66px;
-    width: 100%;
-    margin: 10px 0 50px 0;
-    font-weight: 400;
-    background-color: #EFEFEF;
-    border: solid 1px #EBEBEB;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-}
-
-.form-require {
-  padding: 2px 4px;
-  width: 40px;
-  border-radius: 2px;
-  color: red;
-  font-size: 12px;
-}
-
-.error{
-  margin-top: 10px;
-  list-style: none;
-
-  &__message{
-    color: red;
-  }
-
 }
