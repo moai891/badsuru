@@ -76,3 +76,4 @@ gem 'mini_magick'
 gem 'fog-aws'
 gem "haml-rails", "~> 2.0"
 gem 'font-awesome-sass', '~> 5.13.0'
+gem 'ancestry'
