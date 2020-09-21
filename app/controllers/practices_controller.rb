@@ -14,6 +14,19 @@ class PracticesController < ApplicationController
   #   end
   end
 
+  def show
+    set_practice
+  end
+
+  def edit
+    set_practice
+    if @practice.save
+      redirect_to root_path, notice: "練習情報を更新しました"
+    else
+      flash.now[:alert] = "更新エラー"
+    end
+  end
+
   def create
     @practice = Practice.new(practice_params)
     if @practice.save
@@ -29,6 +42,9 @@ class PracticesController < ApplicationController
       params.require(:practice).permit(:name, :group_name, :date, :start_time, :end_time, :prefecture_code, :city, :place, :detail, :visitor_pay, :shuttle_id, :member_limit, { user_ids: [] } ).merge( manager_id: current_user.id )
     end
 
+    def set_practice
+      @practice = Practice.find(params[:id])
+    end
     # def group_params
     #   params.require(:group).permit(:name, :detail, :group_avatar, { user_ids: [] } )
     # end
