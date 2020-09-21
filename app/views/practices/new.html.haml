@@ -1,0 +1,89 @@
+= render "shared/header"
+= render "shared/nav"
+= render "layouts/notification"
+
+.practice-reg-wrapper
+  .practice-reg
+    %h2.practice-reg__title 練習作成
+
+  .user-reg-main
+    .user-reg-main__form
+      = form_for @practice, builder: WithErrorFormBuilder do |f|
+        -# .field-img
+        -#   .field-img__box
+        -#     = image_tag @practice.pracitc_avatar.url, size: "180x180", alt: "グループ画像", id: "my-group-img", alt: 'グループ画像', class: 'field-img__box__file'
+        -#     = f.label :practice_avatar, class: 'label-reg-group' do
+        -#       = icon('fas', 'image', class: 'field-img__box__photo-icon')
+        -#       = f.file_field :practice_avatar , class: "image-input-space--hidden"
+        .field--1
+          = f.label "練習名", class: 'label-reg-practice--1'
+          %br/
+          = f.text_field :name, autofocus:true, autocomplete: "name", placeholder: "練習名", class: "text-space"
+        .field
+          = f.label "グループ名", class: 'label-reg-practice'
+          %br/
+          = f.text_field :group_name, value: "", autocomplete: "group_name", placeholder: "グループ名", class: "text-space"
+        .field
+          = f.label "メンバー", class: 'label-reg-practice'
+          %br/
+          = f.collection_check_boxes :user_ids, User.all, :id, :nickname
+        .field
+          = f.label "練習日", class: 'label-reg-date'
+          %br/
+          = f.date_select :date, {class: "selectbox-space"}
+        .field__inline
+          .field__inline--left
+            = f.label "開始時間", class: 'label-reg-start_time'
+            %br/
+            = f.time_select :start_time, {}, prompt: "--", class: "selectbox-space--time_select"
+          %p.field__inline__line 〜
+          .field__inline--right
+            = f.label "終了時間", class: 'label-reg-end_time'
+            %br/
+            = f.time_select :end_time, {}, prompt: "--", class: "selectbox-space--time_select"
+        .field__inline
+          .field
+            = f.label "都道府県"
+            %span.form-require 必須
+            %br/
+            = f.collection_select :prefecture_code, Prefecture.all, :id, :name, {prompt: "--", class: "selectbox-space"}
+          .field
+            = f.label "市区町村"
+            %span.form-require 必須
+            %br/
+            = f.text_field :city, autofocus:true, autocomplete: "city", placeholder: "市区町村名",class: "text-space"
+        .field
+          = f.label "場所"
+          %span.form-require 必須
+          %br/
+          = f.text_field :place, autofocus:true, autocomplete: "place", placeholder: "体育館名など",class: "text-space"
+        .field
+          = f.label "詳細"
+          %br/
+          = f.text_area :detail, autofocus:true, autocomplete: "detail", placeholder: "詳細を入力",class: "text-space--detail"
+        .field
+          = f.label "シャトル持ち込み"
+          %span.form-require 必須
+          %br/
+          = f.collection_select :shuttle_id, Shuttle.where(ancestry: nil ), :id, :name, {} ,class: "selectbox-space"
+
+        .field
+          = f.label "ビジター代"
+          %span.form-require 必須
+          %br/
+          = f.text_field :visitor_pay, autofocus:true, autocomplete: "visitor_pay", placeholder: "ビジター代",class: "text-space"
+        .field
+          = f.label "人数制限"
+          %span.form-require 必須
+          %br/
+          = f.text_field :member_limit, autofocus:true, autocomplete: "member_limit", placeholder: "人数制限",class: "text-space"
+          -# .field
+          -# = f.label "シャトル持ち込み"
+          -# %span.form-require 必須
+          -# %br/
+          -# = f.text_field :visitor_pay, autofocus:true, autocomplete: "visitor_pay", placeholder: "ビジター代",class: "text-space"
+
+        .actions-reg
+          = f.submit "登録する", class: "actions-reg__btn"
+
+= render "shared/footer"

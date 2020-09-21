@@ -1,0 +1,75 @@
+.user-reg-main
+  .user-reg-main__form  
+    = form_for @practice,@group, builder: WithErrorFormBuilder do |f|
+      -# .field-img
+      -#   .field-img__box
+      -#     = image_tag @practice.pracitc_avatar.url, size: "180x180", alt: "グループ画像", id: "my-group-img", alt: 'グループ画像', class: 'field-img__box__file'
+      -#     = f.label :practice_avatar, class: 'label-reg-group' do
+      -#       = icon('fas', 'image', class: 'field-img__box__photo-icon')
+      -#       = f.file_field :practice_avatar , class: "image-input-space--hidden"
+      .field--1
+        = f.label "練習名", class: 'label-reg-practice--1'
+        %br/
+        = f.text_field :name, autofocus:true, autocomplete: "name", placeholder: "練習名", class: "text-space"
+      .field
+        = f.label "グループ名", class: 'label-reg-group'
+        %br/
+        = f.text_field :group_name, value: "", autocomplete: "group_name", placeholder: "グループ名", class: "text-space"
+      .field
+        = f.label "メンバー選択", class: 'label-reg-group'
+        %br/
+        = f.collection_check_boxes :user_ids, User.all, :id, :nickname
+      .field
+        = f.label "作成者名", class: 'label-reg-manager'
+        %br/
+        = f.text_field :manager, value: @practice.user.nickname, autocomplete: "manager", placeholder: "作成者名", class: "text-space"
+      .field
+        = f.label "練習日", class: 'label-reg-date'
+        %br/
+        = f.date_select(:date, use_month_numbers: true, prompt: "--", start_year: (Time.now.year), end_year: (Time.now.year + 5), default: Time.now(), class: "selectbox-space")
+      .field
+        = f.label "開始時間", class: 'label-reg-start_time'
+        %br/
+        = f.time_select :start_time, prompt: "--", class: "selectbox-space"
+      .field
+        = f.label "終了時間", class: 'label-reg-end_time'
+        %br/
+        = f.time_select :end_time, prompt: "--", class: "selectbox-space"
+      .field
+        = f.label "都道府県"
+        %span.form-require 必須
+        %br/
+        = f.collection_select :prefecture_code, Prefecture.all, :id, :name, prompt: "--", value: '選択してください'
+      .field
+        = f.label "市区町村"
+        %span.form-require 必須
+        %br/
+        = f.text_field :city, autofocus:true, autocomplete: "city", placeholder: "市区町村名",class: "text-space"
+      .field
+        = f.label "場所"
+        %span.form-require 必須
+        %br/
+        = f.text_field :city, autofocus:true, autocomplete: "place", placeholder: "体育館名など",class: "text-space"
+      .field
+        = f.label "詳細"
+        %span.form-require 必須
+        %br/
+        = f.text_area :detail, autofocus:true, autocomplete: "detail", placeholder: "詳細を入力",class: "text-space--detail"
+      .field
+        = f.label "ビジター代"
+        %span.form-require 必須
+        %br/
+        = f.text_field :visitor_pay, autofocus:true, autocomplete: "visitor_pay", placeholder: "ビジター代",class: "text-space"
+      .field
+        = f.label "人数制限"
+        %span.form-require 必須
+        %br/
+        = f.text_field :member_limit, autofocus:true, autocomplete: "member_limit", placeholder: "人数制限",class: "text-space"
+        -# .field
+        -# = f.label "シャトル持ち込み"
+        -# %span.form-require 必須
+        -# %br/
+        -# = f.text_field :visitor_pay, autofocus:true, autocomplete: "visitor_pay", placeholder: "ビジター代",class: "text-space"
+
+      .actions-reg
+        = f.submit "登録する", class: "actions-reg__btn"
