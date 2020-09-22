@@ -4,6 +4,23 @@
   &--1{
     @include fields();
   }
+
+  &__inline{
+    width: 520px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+
+    &--right{
+      width: 200px;
+    }
+
+    &__line{
+      line-height: 102px;
+      margin: 0 20px;
+    }
+  }
+
 }
 
 .field-img{
@@ -46,6 +63,17 @@
     @include textbox();
     height: 120px;
   }
+}
+
+.selectbox-space{
+  @include selectbox();
+  height: 50px;
+
+ &--time_select{
+  @include selectbox();
+  height: 50px;
+  width: 50px;
+ }
 }
 
 .actions-reg{

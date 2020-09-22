@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   end
   root 'home#index'
   resources :groups, only: [:new, :create, :edit, :update]
+  resources :practices, only: [:new, :create, :edit, :update]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

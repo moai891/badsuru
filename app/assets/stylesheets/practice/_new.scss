@@ -1,9 +1,9 @@
-.group-reg-wrapper{
+.practice-reg-wrapper{
   padding-bottom: 50px;
   background-color: #F9F9F9;
 }
 
-.group-reg{
+.practice-reg{
   @include topbar();
 
   &__title{
@@ -11,18 +11,7 @@
   }
 }
 
-.group-reg-main{
-  width: 100%;
-  
-  &__form{
-    width: 700px;
-    margin: 0 auto;
-    background-color: #fff;
-  }
-
-}
-
-.label-reg-group{
+.label-reg-practice{
   font-size: 16px;
   font-weight: 200;
 

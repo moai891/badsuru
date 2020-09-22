@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_23_104446) do
+ActiveRecord::Schema.define(version: 2020_09_10_053942) do
 
   create_table "groups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -29,6 +29,46 @@ ActiveRecord::Schema.define(version: 2020_08_23_104446) do
     t.index ["user_id"], name: "index_members_on_user_id"
   end
 
+  create_table "participants", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.integer "status_code"
+    t.string "comment"
+    t.bigint "user_id", null: false
+    t.bigint "practice_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["practice_id"], name: "index_participants_on_practice_id"
+    t.index ["user_id"], name: "index_participants_on_user_id"
+  end
+
+  create_table "practice_members", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "practice_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["practice_id"], name: "index_practice_members_on_practice_id"
+    t.index ["user_id"], name: "index_practice_members_on_user_id"
+  end
+
+  create_table "practices", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "group_name"
+    t.date "date"
+    t.time "start_time"
+    t.time "end_time"
+    t.integer "prefecture_code"
+    t.string "city"
+    t.string "place"
+    t.text "detail"
+    t.integer "visitor_pay"
+    t.bigint "shuttle_id", null: false
+    t.bigint "manager_id", null: false
+    t.integer "member_limit"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["manager_id"], name: "index_practices_on_manager_id"
+    t.index ["shuttle_id"], name: "index_practices_on_shuttle_id"
+  end
+
   create_table "profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "phonenumber"
     t.integer "old", null: false
@@ -42,6 +82,14 @@ ActiveRecord::Schema.define(version: 2020_08_23_104446) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
+  create_table "shuttles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "ancestry"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["ancestry"], name: "index_shuttles_on_ancestry"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -59,5 +107,11 @@ ActiveRecord::Schema.define(version: 2020_08_23_104446) do
 
   add_foreign_key "members", "groups"
   add_foreign_key "members", "users"
+  add_foreign_key "participants", "practices"
+  add_foreign_key "participants", "users"
+  add_foreign_key "practice_members", "practices"
+  add_foreign_key "practice_members", "users"
+  add_foreign_key "practices", "shuttles"
+  add_foreign_key "practices", "users", column: "manager_id"
   add_foreign_key "profiles", "users"
 end
